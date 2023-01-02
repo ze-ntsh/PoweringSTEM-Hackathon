@@ -5,7 +5,7 @@ const Calculator = () => {
 
     const fetchPrediction = async() => {
     
-        const response = await fetch('http://127.0.0.1:8000/predict?' + new URLSearchParams({
+        const response = await fetch('https://w9qi0f.deta.dev/predict?' + new URLSearchParams({
             age: age | 0,
             sex: sex | 0,
             bmi: BMI | 0,
