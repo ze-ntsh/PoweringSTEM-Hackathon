@@ -18,6 +18,7 @@
     .about{
         height: 90%;
         display: flex;
+        width: 100vw;
         flex-direction: row;
         
         .about-image{
@@ -28,8 +29,14 @@
         }
 
         .about-text{
-            width: 50vw;
+            width: 42vw;
             padding: 20px;
+
+            p{
+                margin: 20px 20px 20px;
+                text-align: justify;
+                font-size: 17px;
+            }
         }
     }
 

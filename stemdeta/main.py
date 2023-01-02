@@ -16,7 +16,7 @@ app.add_middleware(
 )
 
 @app.get("/predict")
-def root(age=40, sex=1, bmi=29.9, smoker=0, region=3, children=2):
+def root(age=0, sex=0, bmi=0, smoker=0, region=0, children=0):
     if (age == 0 or bmi == 0):
         return {"prediction": 0}
     else:

@@ -4,29 +4,35 @@ import './css/Calculator.scss'
 const Calculator = () => {
 
     const fetchPrediction = async() => {
-    
-        const response = await fetch('https://w9qi0f.deta.dev/predict?' + new URLSearchParams({
-            age: age | 0,
-            sex: sex | 0,
-            bmi: BMI | 0,
-            smoker: smoker | 0,
-            region: region | 0,
-            children: children | 0
-          })
-        )
-        const resJSON = await response.json()
-    
-        setPrediction(resJSON.prediction);
+
+        console.log(age)
+
+        if(age <= 0 || sex === "" || BMI <= 0 || smoker === "" || region === "" || children < 0){
+            setPrediction(0)
+        } else { 
+            const response = await fetch('https://w9qi0f.deta.dev/predict?' + new URLSearchParams({
+                age: age,
+                sex: sex,
+                bmi: BMI,
+                smoker: smoker,
+                region: region,
+                children: children
+            })
+            )
+            const resJSON = await response.json()
+        
+            setPrediction(resJSON.prediction);
+        }
     };
     
     const [prediction, setPrediction] = useState(0)
 
     const[age, setAge] = useState(0);
-    const[sex, setSex] = useState(0);
+    const[sex, setSex] = useState("");
     const[BMI, setBMI] = useState(0);
-    const[smoker, setSmoker] = useState(0);
-    const[region, setRegion] = useState(0);
-    const[children, setChildren] = useState(0);
+    const[smoker, setSmoker] = useState("");
+    const[region, setRegion] = useState("");
+    const[children, setChildren] = useState(-1);
 
     useEffect(() => {
         fetchPrediction()
@@ -39,12 +45,13 @@ const Calculator = () => {
             <form className='main-form'>
                 <fieldset>
                     <label>Age</label>
-                    <input type={'number'} value={age} onChange={(e) => setAge(e.target.value)} name='age'></input>
+                    <input type={'number'} value={age<=0?"":age} onChange={(e) => setAge(e.target.value)} name='age'></input>
                 </fieldset>
                 
                 <fieldset>
                     <label>Sex</label>
                     <select value={sex} onChange={(e) => setSex(e.target.value)} name='sex'>
+                        <option value={""}></option>
                         <option value={0}>Female</option>
                         <option value={1}>Male</option>
                     </select>
@@ -52,12 +59,13 @@ const Calculator = () => {
                 
                 <fieldset>
                     <label>BMI</label>
-                    <input type={'number'} value={BMI} onChange={(e) => setBMI(e.target.value)} name='bmi'></input>
+                    <input type={'number'} value={BMI<=0?"":BMI} onChange={(e) => setBMI(e.target.value)} name='bmi'></input>
                 </fieldset>
 
                 <fieldset>
                     <label>Smoker</label>
                         <select value={smoker} onChange={(e) => setSmoker(e.target.value)} name='smoker'>
+                        <option value={""}></option>
                         <option value={0}>No</option>
                         <option value={1}>Yes</option>
                     </select>
@@ -66,6 +74,7 @@ const Calculator = () => {
                 <fieldset>
                 <label>Region</label>
                 <select value={region} onChange={(e) => setRegion(e.target.value)} name='region'>
+                    <option value={""}></option>
                     <option value={0}>Northeast</option>
                     <option value={1}>Northwest</option>
                     <option value={2}>Southeast</option>
@@ -75,7 +84,7 @@ const Calculator = () => {
 
                 <fieldset>
                     <label>Children</label>
-                    <input type={'number'} value={children} onChange={(e) => setChildren(e.target.value)} name='children'></input>
+                    <input type={'number'} value={children<0?"":children} onChange={(e) => setChildren(e.target.value)} name='children'></input>
                 </fieldset>
             </form>
 
