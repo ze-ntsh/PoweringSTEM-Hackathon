@@ -1,0 +1,1 @@
+{"id":"4bb85a73-504c-4baa-8df8-25f60bd38b94","space":46330,"runtime":"python3.9","name":"stemdeta","path":"w9qi0f","project":"b080rydh","account":"144798365827","region":"us-east-1","deps":["fastapi","uvicorn","scikit-learn"],"envs":null,"public":true,"log_level":"off","cron":""}

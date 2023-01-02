@@ -1,0 +1,23 @@
+.nav{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    background-color: #fafafa;
+    filter: drop-shadow(0 5px 6px #f0f0f0);
+    .nav-list{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        li{
+            display: flex;
+            align-items: center;
+            .nav-link{
+                text-decoration: none;
+                padding: 20px;
+                color: black;
+                font-size: 20px;
+            }
+        }
+    }
+}
+

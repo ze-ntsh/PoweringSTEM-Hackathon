@@ -1,0 +1,36 @@
+.about-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90vh;
+    width: 100vw;
+    
+
+    .title{
+        height: 10%;
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        font-family: 'Roboto Mono';
+    }
+    
+    .about{
+        height: 90%;
+        display: flex;
+        flex-direction: row;
+        
+        .about-image{
+            width: 50vw;
+            background-image: url(../../assets/about.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .about-text{
+            width: 50vw;
+            padding: 20px;
+        }
+    }
+
+}
