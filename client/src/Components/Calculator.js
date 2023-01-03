@@ -4,10 +4,8 @@ import './css/Calculator.scss'
 const Calculator = () => {
 
     const fetchPrediction = async() => {
-
-        console.log(age)
-
-        if(age <= 0 || sex === "" || BMI <= 0 || smoker === "" || region === "" || children < 0){
+        console.log(BMI)
+        if(age <= 0 || age === "" || sex === "" || BMI <= 0 || smoker === "" || region === "" || children < 0 || children === "" ){
             setPrediction(0)
         } else { 
             const response = await fetch('https://w9qi0f.deta.dev/predict?' + new URLSearchParams({
@@ -30,6 +28,8 @@ const Calculator = () => {
     const[age, setAge] = useState(0);
     const[sex, setSex] = useState("");
     const[BMI, setBMI] = useState(0);
+    const[height, setHeight] = useState(0);
+    const[weight, setWeight] = useState(0);
     const[smoker, setSmoker] = useState("");
     const[region, setRegion] = useState("");
     const[children, setChildren] = useState(-1);
@@ -37,6 +37,12 @@ const Calculator = () => {
     useEffect(() => {
         fetchPrediction()
     }, [age, sex, BMI, region, smoker, children])
+
+    useEffect(() => {
+        if (height>=0 || weight>= 0 || height !== "" || weight !== ""){
+            setBMI((weight)/(height/100*height/100));
+        }
+    }, [height, weight])
 
     return(
         <section className="calc-container" id="calc">
@@ -57,9 +63,22 @@ const Calculator = () => {
                     </select>
                 </fieldset>
                 
-                <fieldset>
-                    <label>BMI</label>
-                    <input type={'number'} value={BMI<=0?"":BMI} onChange={(e) => setBMI(e.target.value)} name='bmi'></input>
+                <fieldset className="BMI-cont">
+                    <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label>Height</label>
+                            <input type={'number'} value={height<=0?"":height} onChange={(e) => setHeight(e.target.value)} name='height' className="height-input" placeholder="(in cm)"></input>
+                        </td>
+
+                        <td>
+                            <label>Weight</label>
+                            <input type={'number'} value={weight<=0?"":weight} onChange={(e) => setWeight(e.target.value)} name='weight' className="weight-input" placeholder="(in kg)"></input>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
                 </fieldset>
 
                 <fieldset>

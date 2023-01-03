@@ -59,7 +59,22 @@
                     font-size: 20px;
                     padding: 2px 5px;
                 }
-            }   
+
+                input::placeholder{
+                    font-size: 12px;
+                    text-align: right;
+                }
+            }
+
+            fieldset.BMI-cont{  
+                .height-input{
+                    width: 90%;
+                }
+                .weight-input{
+                    width: 95%;
+                }
+
+            }
         }
         
         .result{
